@@ -1,10 +1,15 @@
+import os
 import yt_dlp
 
 # Function to customize download options
 def get_download_options():
+    # Ensure the target directory exists
+    download_dir = os.path.join("downloads",'')
+    os.makedirs(download_dir, exist_ok=True)
+
     options = {
         'progress_hooks': [hook],  # Use a progress hook
-        'outtmpl': '%(title)s.%(ext)s',  # Save with the video title
+        'outtmpl': os.path.join(download_dir, '%(title)s.%(ext)s'),  # Save with the video title in the directory
     }
     return options
 
